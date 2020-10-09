@@ -26,7 +26,7 @@ server.use('/api/shoppinglists', authenticate, require('./routes/shoppinglists')
 
 
 //load up static
-const distDir = path.resolve(path.dirname, 'client/dist');
+const distDir = path.resolve(__dirname, 'client/dist');
 server.use('/', express.static(distDir));
 
 
