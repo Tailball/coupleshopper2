@@ -1,5 +1,6 @@
 //load env files
 require('dotenv').config();
+const path = require('path');
 
 
 //load models and set up mongodb
@@ -25,7 +26,8 @@ server.use('/api/shoppinglists', authenticate, require('./routes/shoppinglists')
 
 
 //load up static
-server.use('/', express.static('client/dist'));
+const distDir = path.resolve(path.dirname, 'client/dist');
+server.use('/', express.static(distDir));
 
 
 //activate server
