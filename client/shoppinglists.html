@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>couplshoppr 2.0</title>
+
+    <script src="https://kit.fontawesome.com/068baf628a.js" crossorigin="anonymous"></script>
+    <link href="css/index.scss" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="shoppinglists-container">
+        <h1 id="logo">coupl<span id="logo--emph">shoppr</span> 2.0</h1>
+
+        <i id="open-add-item-button" class="fas fa-plus-circle"></i>
+        <i id="open-filters-button" class="fas fa-bars"></i>
+
+        <div id="crudcontrols">
+            <i id="crudcontrols-close" class="fas fa-window-close"></i>
+            <form>
+                <div class="crudcontrols--control">
+                    <label for="name">name</label>
+                    <input type="text" id="name" class="name" name="name">
+                </div>
+
+                <div class="crudcontrols--control">
+                    <label for="description">description</label>
+                    <input type="text" id="description" class="description" name="description">
+                </div>
+
+                <div class="crudcontrols--buttons">
+                    <button id="crudcontrols-cancel" type="button">Cancel</button>
+                    <button id="crudcontrols-confirm" class="gone" disabled>Add item</button>
+                </div>
+            </form>
+
+        </div>
+
+        <div id="filters">
+            <i id="filters-close" class="fas fa-window-close"></i>
+            <label for="sortby">Sort by</label>
+            <select id="sortby" class="filters--sorting">
+                <option value="date" selected>Date added</option>
+                <option value="alphanumeric">Alphabetically</option>
+            </select>
+        </div>
+
+        <div id="data"></div>
+    </div>
+
+    <script src="js/shoppinglists.js"></script>
+</body>
+</html>

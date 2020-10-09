@@ -1,0 +1,537 @@
+// $font-lato   $font-roboto
+
+// $font-lato-thin      $font-lato-regular      $font-lato-bold
+// $font-roboto-thin    $font-roboto-regular
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//GENERAL
+////////////////////////////////////////////////////////////////////////////////////
+*, *:focus {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font-size: 62.5%;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#logo {
+    font-family: $font-lato;
+    font-weight: $font-lato-regular;
+    font-size: 2.5em;
+    text-align: right;
+    padding: .7em 1em .7em 0;
+    color: rgb(53, 53, 53);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+
+    #logo--emph {
+        font-weight: $font-lato-bold;
+        color: $color-accent;
+    }
+}
+
+#login-container,
+#shoppinglist-container,
+#shoppinglists-container {
+    position: relative;
+    background-color: $color-container;
+    width: 100vw;
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+#open-add-item-button,
+#open-filters-button {
+    display: block;
+    position: absolute;
+    font-size: 3.5em;
+    cursor: pointer;
+    color: $color-accent;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        font-size: 4em;
+        top: .37em;
+    }
+
+    &.gone {
+        opacity: 0;
+    }
+}
+
+#open-add-item-button {
+    top: .5em;
+    left: 2em;
+
+    &:hover {
+        left: 1.67em;
+    }
+}
+
+#open-filters-button {
+    top: .5em;
+    left: .5em;
+
+    &:hover {
+        left: .37em;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//LOGIN
+////////////////////////////////////////////////////////////////////////////////////
+#login-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 1em;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,.9);
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+
+    .login--control {
+        width: 90%;
+        display: flex;
+        justify-content: stretch;
+        margin-bottom: 1.75em;
+
+        label {
+            width: 8em;
+            background-color: $color-accent;
+            color: $color-accent-negative;
+            padding: .5em;
+            border-top-left-radius: .6em;
+            border-bottom-left-radius: .6em;
+            font-family: $font-lato;
+            font-size: 1.5em;
+        }
+
+        input {
+            width: 100%;
+            border-top-right-radius: .6em;
+            border-bottom-right-radius: .6em;
+            background-color: rgba(255, 255, 255, .25);
+            font-family: $font-lato;
+            color: $color-accent-negative;
+            font-size: 1.5em;
+            padding-left: 1em;
+        }
+    }
+
+    button {
+        width: 35vw;
+        padding: 1.5em;
+        margin-top: 1.5em;
+        font-family: $font-roboto;
+        font-size: 1.5em;
+        border-radius: .6em;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+
+        border: 1px solid $color-accent;
+        background-color: $color-accent;
+        color: $color-accent-negative;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0);
+            color: $color-accent;
+        }
+    }
+}
+
+#login-container a {
+    display: none;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//CRUD FILTERS & CONTROLS
+////////////////////////////////////////////////////////////////////////////////////
+#filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 100vw;
+    bottom: 0;
+    border-radius: 1em;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,.9);
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+
+    &.show {
+        right: 0;
+    }
+
+    &-close {
+        position: absolute;
+        right: .75em;
+        top: .75em;
+        font-size: 3.5em;
+        color: $color-accent;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+    &-close:hover {
+        color: $color-accent-negative;
+    }
+
+    label, select {
+        width: 60vw;
+    }
+
+    label {
+        font-family: $font-lato;
+        color: $color-accent-negative;
+        font-size: 1.75em;
+        margin-bottom: 1em;
+    }
+
+    select {
+        background-color: rgba(0, 0, 0, 0);
+        border-bottom: 2px solid $color-accent;
+        padding: .75em 0 .75em 0;
+        font-family: $font-lato;
+        color: $color-accent-negative;
+    }
+}
+
+#crudcontrols {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 100vw;
+    bottom: 0;
+    border-radius: 1em;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,.9);
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+
+    &.show {
+        right: 0;
+    }
+
+    &-close {
+        z-index: 999;
+        position: absolute;
+        right: .75em;
+        top: .75em;
+        font-size: 3.5em;
+        color: $color-accent;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+    &-close:hover {
+        color: $color-accent-negative;
+    }
+
+    form {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .crudcontrols--control {
+            width: 90%;
+            display: flex;
+            justify-content: stretch;
+            margin-bottom: 1.75em;
+
+            label {
+                width: 8em;
+                background-color: $color-accent;
+                color: $color-accent-negative;
+                padding: .5em;
+                border-top-left-radius: .6em;
+                border-bottom-left-radius: .6em;
+                font-family: $font-lato;
+                font-size: 1.5em;
+            }
+
+            input,
+            select {
+                width: 100%;
+                border-top-right-radius: .6em;
+                border-bottom-right-radius: .6em;
+                background-color: rgba(255, 255, 255, .25);
+                font-family: $font-lato;
+                color: $color-accent-negative;
+                font-size: 1.5em;
+                padding-left: 1em;
+            }
+        }
+
+        .crudcontrols--buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+
+            button {
+                width: 35vw;
+                padding: 1.5em;
+                margin-top: 1.5em;
+                font-family: $font-roboto;
+                font-size: 1.5em;
+                border-top-left-radius: .6em;
+                border-top-right-radius: .6em;
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+            }
+
+            #crudcontrols-cancel {
+                border: 1px solid $color-accent;
+                background-color: rgba(0, 0, 0, 0);
+                color: $color-accent;
+
+                &:hover {
+                    background-color: $color-accent;
+                    color: $color-accent-negative;
+                }
+            }
+
+            #crudcontrols-confirm {
+                border: 1px solid $color-accent;
+                background-color: $color-accent;
+                color: $color-accent-negative;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0);
+                    color: $color-accent;
+                }
+
+                &.gone {
+                    visibility: hidden;
+                }
+            }
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//SHOPPINGLISTS
+////////////////////////////////////////////////////////////////////////////////////
+#shoppinglists-container #data {
+    height: 100%;
+    overflow: scroll;
+    padding: 1em;
+
+    .node {
+        width: 100%;
+        margin-bottom: 1.5em;
+
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(207, 207, 207);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+        border-radius: .6em;
+        padding: .5em 1em 1em 1em;
+
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(211, 194, 194);
+        }
+
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .4em;
+
+            &-title {
+                font-family: $font-roboto;
+                font-weight: $font-roboto-regular;
+                color: $color-accent;
+                font-size: 2em;
+                padding: .3em 0 .3em 0;
+            }
+            
+            &-date {
+                font-family: $font-roboto;
+                font-weight: $font-roboto-thin;
+                color: $color-accent;
+                font-size: 1.35em;
+            }
+        }
+
+        &--sub {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &-description {
+                padding: 1em 0;
+                font-family: $font-lato;
+                font-weight: $font-lato-regular;
+                font-style: italic;
+                color: black;
+                font-size: 1.2em;
+            }
+            
+            &-controls {
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    width: 3.2em;
+                    height: 3.2em;
+                    border-radius: 50%;
+                    background-color: $color-accent-light;
+                    color: $color-accent-negative;
+                    transition: all .3s ease-in-out;
+                    border: 2px solid $color-accent-negative;
+                }
+
+                button:last-child {
+                    margin-left: 1.2em;
+                }
+
+                button:hover {
+                    cursor: pointer;
+                    color: $color-accent-light;
+                    background-color: $color-accent-negative;
+                    border: 2px solid $color-accent-light;
+                }
+            }
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//SHOPPINGLIST
+////////////////////////////////////////////////////////////////////////////////////
+#shoppinglist-container #data {
+    height: 100%;
+    overflow: scroll;
+    padding: 1em;
+
+    .node {
+        width: 100%;
+        margin-bottom: 1.5em;
+
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(207, 207, 207);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.65);
+        border-radius: .6em;
+        padding: .5em 1em 1em 1em;
+
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .4em;
+
+            &-title {
+                font-family: $font-roboto;
+                font-weight: $font-roboto-regular;
+                color: $color-accent;
+                font-size: 2em;
+                padding: .3em 0 .3em 0;
+            }
+            
+            &-theme,
+            &-date {
+                font-family: $font-roboto;
+                font-weight: $font-roboto-thin;
+                color: $color-accent;
+                font-size: 1.35em;
+            }
+        }
+
+        &--sub {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &-quantity {
+                margin-left: .3em;
+                font-family: $font-lato;
+                font-weight: $font-lato-bold;
+                color: $color-accent-negative;
+                background-color: $color-accent-light;
+                border-radius: 50%;
+                font-size: 1.3em;
+                width: 1.85em;
+                text-align: center;
+                margin-right: 1em;
+                padding: .3em;
+            }
+
+            &-description {
+                flex: 6;
+                font-family: $font-lato;
+                font-weight: $font-lato-regular;
+                font-style: italic;
+                color: black;
+                font-size: 1.2em;
+            }
+            
+            &-controls {
+                flex: 2;
+
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    width: 3.2em;
+                    height: 3.2em;
+                    border-radius: 50%;
+                    background-color: $color-accent-light;
+                    color: $color-accent-negative;
+                    transition: all .3s ease-in-out;
+                    border: 2px solid $color-accent-negative;
+                }
+
+                button:last-child {
+                    margin-left: 1.2em;
+                }
+
+                button:hover {
+                    cursor: pointer;
+                    color: $color-accent-light;
+                    background-color: $color-accent-negative;
+                    border: 2px solid $color-accent-light;
+                }
+            }
+        }
+    }
+}
+
