@@ -1,8 +1,8 @@
-import { getToken, onHasNotLoggedIn } from './authentication/auth';
-import { setToken, getShoppingLists, addShoppingList, deleteShoppingList, editShoppingList } from './data/repository';
-import { setup as setupNodes, rebuildNodes } from './nodes/shoppinglistsNode';
-import { setupItemControls, editItem } from './components/shoppinglists-item-controls';
-import { setupSortControls } from './components/filter-controls';
+import { getToken, onHasNotLoggedIn } from '../authentication/auth';
+import { setToken, getShoppingLists, addShoppingList, deleteShoppingList, editShoppingList } from '../data/repository';
+import { setup as setupNodes, rebuildNodes } from './shoppinglistsNode';
+import { setupItemControls, editItem } from './shoppinglists-item-controls';
+import { setupSortControls } from './filter-controls';
 
 
 let token;

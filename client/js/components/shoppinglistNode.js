@@ -12,7 +12,7 @@ export const setup = (onDeleteCallback, onEditCallback) => {
     onItemEditCallback = onEditCallback;
 }
 
-const createNode = ({ _id, name, description, quantity, dateCreated, theme }) => {
+const createNode = ({ _id, name, description, quantity, dateCreated, theme, image }) => {
     //Main div (.node)
     const container = document.createElement('div');
     container.classList.add('node');
@@ -29,17 +29,12 @@ const createNode = ({ _id, name, description, quantity, dateCreated, theme }) =>
     titleNode.classList.add('node--header-title');
     headerNode.appendChild(titleNode);
 
-    const themeNode = document.createElement('p');
-    themeNode.innerHTML = theme;
-    themeNode.classList.add('node--header-theme');
-    headerNode.appendChild(themeNode);
-
     //Date in header (.node--header-date)
     const d = new Date(dateCreated);
     const date = `${d.getFullYear()}-${formatFullDigits(d.getMonth() + 1)}-${formatFullDigits(d.getDate())} ${formatFullDigits(d.getHours())}:${formatFullDigits(d.getMinutes())}`;
 
     const dateNode = document.createElement('p');
-    dateNode.innerHTML = date;
+    dateNode.innerHTML = `${theme}  |  ${date}`;
     dateNode.classList.add('node--header-date');
     headerNode.appendChild(dateNode);
 
@@ -59,6 +54,16 @@ const createNode = ({ _id, name, description, quantity, dateCreated, theme }) =>
     descriptionNode.innerHTML = description;
     descriptionNode.classList.add('node--sub-description');
     subNode.appendChild(descriptionNode);
+
+    if(image) {
+        const imgNode = document.createElement('img');
+        console.log(image);
+        
+        imgNode.src = image;
+        
+        imgNode.classList.add('node--sub-image');
+        subNode.appendChild(imgNode);
+    }
 
     //Controls in sub (.node--sub-controls)
     const controls = document.createElement('div');
@@ -90,33 +95,3 @@ export const rebuildNodes = dataset => {
     clearNodes();
     dataset.forEach(entry => createNode(entry));
 }
-
-// const filterData = (data, filter) => {
-//     if(!filter) return [...data];
-//     if(!filter.sortBy) return [...data];
-
-//     switch(filter.sortBy) {
-//         case 'date':
-//             const filterByDate = data.sort((a, b) => {
-//                 return a.dateCreated - b.dateCreated
-//             });
-//             return [...filterByDate];
-        
-//         case 'alphanumeric':
-//             const filterByAlphabet = data.sort((a, b) => {
-//                 const nA = a.name.toUpperCase();
-//                 const nB = b.name.toUpperCase();
-                
-//                 if(nA < nB) return -1;
-//                 else if(nA > nB) return 1;
-//                 else return 0;
-//             });
-//             return [...filterByAlphabet];
-
-//         case 'quantity':
-//             const filterByQty = data.sort((a, b) => {
-//                 return b.quantity - a.quantity;
-//             });
-//             return [...filterByQty];
-//     }
-// }

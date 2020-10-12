@@ -1,8 +1,8 @@
-import { getToken, onHasNotLoggedIn } from './authentication/auth';
-import { editShoppingList, getShoppingList, setToken } from './data/repository';
-import { setupSortControls } from './components/filter-controls';
-import { setup as setupNodes, rebuildNodes } from './nodes/shoppinglistNode';
-import { setupItemControls, editItem } from './components/shoppinglist-item-controls';
+import { getToken, onHasNotLoggedIn } from '../authentication/auth';
+import { editShoppingList, getShoppingList, setToken } from '../data/repository';
+import { setupSortControls } from './filter-controls';
+import { setup as setupNodes, rebuildNodes } from './shoppinglistNode';
+import { setupItemControls, editItem } from './shoppinglist-item-controls';
 
 
 let token;
@@ -97,6 +97,7 @@ function onAdd(item) {
         shoppingItem.theme = item.theme;
         shoppingItem.quantity = item.quantity;   
         shoppingItem.theme = item.theme;
+        shippingItem.image = item.image;
     }
 
     editShoppingList(shoppingList._id, shoppingList.name, shoppingList.description, shoppingList.shoppingItems)

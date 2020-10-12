@@ -14,7 +14,7 @@ const server = express();
 
 
 //load up middleware
-server.use(express.json());
+server.use(express.json({ limit: '3mb' }));
 server.use(require('cors')());
 server.use(require('./middleware/logger'));
 

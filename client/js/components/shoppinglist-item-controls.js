@@ -26,6 +26,15 @@ export function setupItemControls(onAddItem) {
     _openFormButton.addEventListener('click', onAddItemClick);
 }
 
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
 function onPrepareItem(e) {
     e.preventDefault();
 
@@ -34,20 +43,27 @@ function onPrepareItem(e) {
         name: elements['name'].value,
         description: elements['description'].value,
         quantity: elements['quantity'].value,
-        theme: elements['theme'].value
-    }
+        theme: elements['theme'].value,
+    };
 
-    if(curId) newItem._id = curId;
+    toBase64(elements['image'].files[0]) //todo: rework this
+        .then(results => {
+            newItem.image = results;
+            if(curId) newItem._id = curId;
 
-    onInputChange();
-    onAddItemCallback(newItem);
+            onInputChange();
+            onAddItemCallback(newItem);
 
-    if(curId) {
-        curId = null;
-        onCancelSettings();
-    }
+            if(curId) {
+                curId = null;
+                onCancelSettings();
+            }
 
-    clearForm();
+            clearForm();
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
 
 function onInputChange(e) {

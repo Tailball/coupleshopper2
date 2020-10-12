@@ -17,6 +17,10 @@ const shoppingItem = mongoose.Schema({
         type: Number,
         required: true 
     },
+    image: {
+        type: String,
+        required: false
+    },
     dateCreated: { 
         type: Number, 
         default: Date.now(),
