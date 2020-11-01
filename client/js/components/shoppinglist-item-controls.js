@@ -46,6 +46,23 @@ function onPrepareItem(e) {
         theme: elements['theme'].value,
     };
 
+    if(!elements['image'].files || !elements['image'].files.length) {
+        if(curId) newItem._id = curId;
+
+        onInputChange();
+        onAddItemCallback(newItem);
+
+        if(curId) {
+            curId = null;
+            onCancelSettings();
+        }
+
+        clearForm();
+
+        return;
+    }
+    
+
     toBase64(elements['image'].files[0]) //todo: rework this
         .then(results => {
             newItem.image = results;
