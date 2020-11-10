@@ -97,7 +97,7 @@ function onAdd(item) {
         shoppingItem.theme = item.theme;
         shoppingItem.quantity = item.quantity;   
         shoppingItem.theme = item.theme;
-        shippingItem.image = item.image;
+        shoppingItem.image = item.image;
     }
 
     editShoppingList(shoppingList._id, shoppingList.name, shoppingList.description, shoppingList.shoppingItems)
